@@ -10,13 +10,12 @@ This project predicts the properties of fuel blends using an ensemble of gradien
 
 The model creates additional features from the raw blend composition data:
 
-* Weighted blend properties using component fractions.
-* Fraction interaction features between fuel components.
-* Statistical property features:
-
-  * Mean of component properties
-  * Standard deviation of component properties
-  * Difference from mean for each component property
+- Weighted blend properties using component fractions
+- Fraction interaction features between fuel components
+- Statistical property features:
+  - Mean of component properties
+  - Standard deviation of component properties
+  - Difference from mean for each component property
 
 These engineered features help capture relationships between blend composition and final blend properties.
 
@@ -24,15 +23,15 @@ These engineered features help capture relationships between blend composition a
 
 Three gradient boosting models are trained independently:
 
-* LightGBM Regressor
-* XGBoost Regressor
-* CatBoost Regressor
+- LightGBM Regressor
+- XGBoost Regressor
+- CatBoost Regressor
 
 ### 3. Cross Validation
 
-* 10-Fold K-Fold Cross Validation
-* Shuffle enabled
-* Random seed = 42
+- 10-Fold K-Fold Cross Validation
+- Shuffle enabled
+- Random seed = 42
 
 Out-of-fold predictions are generated for each model.
 
@@ -42,11 +41,11 @@ Instead of simple averaging, model weights are optimized using SciPy's constrain
 
 Final prediction:
 
+```
 Final Prediction = w₁ × LightGBM + w₂ × XGBoost + w₃ × CatBoost
+```
 
-where:
-
-w₁ + w₂ + w₃ = 1
+Where: `w₁ + w₂ + w₃ = 1`
 
 ### 5. Evaluation Metric
 
@@ -54,23 +53,17 @@ Mean Absolute Percentage Error (MAPE)
 
 A custom safe MAPE implementation is used to avoid division-by-zero issues.
 
----
-
 ## Project Structure
 
+```
+.
 ├── train.csv
-
 ├── test.csv
-
 ├── main.py
-
 ├── requirements.txt
-
 ├── README.md
-
 └── submission_mape_ensemble_compatible.csv
-
----
+```
 
 ## Installation
 
@@ -86,8 +79,6 @@ cd shell-ai-hackathon
 ```bash
 pip install -r requirements.txt
 ```
-
----
 
 ## Running the Solution
 
@@ -107,34 +98,24 @@ The script will:
 4. Generate predictions
 5. Create the submission file
 
-Output:
-
-```bash
-submission_mape_ensemble_compatible.csv
-```
-
----
+Output: `submission_mape_ensemble_compatible.csv`
 
 ## Key Features
 
-* Advanced feature engineering
-* LightGBM + XGBoost + CatBoost ensemble
-* Optimized weighted averaging
-* 10-Fold cross validation
-* MAPE-based optimization
-* Fully reproducible (seed = 42)
-
----
+- Advanced feature engineering
+- LightGBM + XGBoost + CatBoost ensemble
+- Optimized weighted averaging
+- 10-Fold cross validation
+- MAPE-based optimization
+- Fully reproducible (seed = 42)
 
 ## Future Improvements
 
-* Hyperparameter optimization using Optuna
-* Stacking ensemble with meta-learner
-* Feature selection techniques
-* Additional domain-specific fuel chemistry features
-
----
+- Hyperparameter optimization using Optuna
+- Stacking ensemble with meta-learner
+- Feature selection techniques
+- Additional domain-specific fuel chemistry features
 
 ## Authors
 
-Developed for the Shell AI Hackathon.
+Developed for the Shell AI Hackathon
